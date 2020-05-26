@@ -28,7 +28,7 @@ void Frame::erase(Character &x) {
 }
 
 // Check if the target position is free
-bool Frame::targetPosition(Character &x, int _row, int _col) {
+bool Frame::targetPosition(Character &x, Character &y, int _row, int _col) {
 	// Get the element at the target position:
 	char target = mvwinch(m_win, _row, _col);
 	// If the target position is watter, mountain or tree stop the character to go through it
@@ -37,14 +37,10 @@ bool Frame::targetPosition(Character &x, int _row, int _col) {
 	}
 	// If the target position is a monster don't let the character to go through it (for now)
 	if (target == 'M' || target == 'P') {
-		x.setArmor(-5);
-		x.setHealth(-5);
-		// Print only stats for the player
-		if(x.getSymbol() == 'P')
-			m_subFrame -> printInventory(x);
-		if(x.getArmor() + x.getHealth() <= 0)
-			if(x.getSymbol() == 'P'){
-				std::vector<std::string> v{{"                                               "},
+		if(x.getArmor() + x.getHealth() > y.getArmor() + y.getHealth())
+			if(x.getSymbol() == 'M') {
+				std::vector<std::string> v{
+				   {"                                               "},
 				   {"                                               "},
 				   {"                                               "},
 				   {"                                               "},
@@ -63,7 +59,84 @@ bool Frame::targetPosition(Character &x, int _row, int _col) {
 				   {"                                               "},
 				   {"                                               "},};
 				printMap(v);
+				getch();
+				endwin();
+				exit(0);
+			} else {
+				std::vector<std::string> v{
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"            WE ARE THE CHAMPIONS!!!            "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},};
+				printMap(v);
+				getch();
+				endwin();
+				exit(0);
+		} else {
+			if(x.getSymbol() == 'M') {
+				std::vector<std::string> v{
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"             WE ARE THE CHAMPIONS!!!           "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},};
+				printMap(v);
+				getch();
+				endwin();
+				exit(0);
+			} else {
+				std::vector<std::string> v{
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                   GAME OVER                   "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},
+				   {"                                               "},};
+				printMap(v);
+				getch();
+				endwin();
+				exit(0);
 			}
+		}
 		return FALSE;
 	}
 	// If the target position is an armor plate add five points to the armor
@@ -87,9 +160,9 @@ bool Frame::targetPosition(Character &x, int _row, int _col) {
 }
 
 // Add a character at a specific position to the window
-void Frame::add(Character &x, int _row, int _col) {
+void Frame::add(Character &x, Character &y, int _row, int _col) {
 	if((_row >= 1 && _row < m_height - 1) && (_col >= 1 && _col < m_width - 1)) {
-		if( !targetPosition(x, _row, _col) ) return;
+		if( !targetPosition(x, y, _row, _col) ) return;
 		erase(x);
 		mvwaddch(m_win, _row, _col, x.getSymbol());
 		wrefresh(m_win);

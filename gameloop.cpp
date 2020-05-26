@@ -1,22 +1,22 @@
 #include "gameloop.h"
 
-void moveMonster(std::shared_ptr<Frame> gameMap, Character &monster) {
+void moveMonster(std::shared_ptr<Frame> gameMap, Character &monster, Character &player) {
 	
 	//Monster moves randomly
 	srand (time(NULL) * 1000);
 
 	switch (rand() % 4 + 1) {
 		case 1:
-			gameMap->add(monster, monster.getRow(), monster.getCol() - 1);
+			gameMap->add(monster, player, monster.getRow(), monster.getCol() - 1);
 		break;
 		case 2:
-			gameMap->add(monster, monster.getRow() - 1, monster.getCol());
+			gameMap->add(monster, player, monster.getRow() - 1, monster.getCol());
 		break;
 		case 3:
-			gameMap->add(monster, monster.getRow() + 1, monster.getCol());
+			gameMap->add(monster, player, monster.getRow() + 1, monster.getCol());
 		break;
 		case 4:
-			gameMap->add(monster, monster.getRow(), monster.getCol() + 1);
+			gameMap->add(monster, player, monster.getRow(), monster.getCol() + 1);
 		break;
 	}                  
 }
@@ -72,24 +72,24 @@ void gameLoop(Character &player, Character &monster, int ch) {
 		ch = getch();
 		// Main character movements
 		if(ch == KEY_LEFT || ch == 'a' || ch =='A') {
-			gameMap->add(player, player.getRow(), player.getCol() - 1);
+			gameMap->add(player, monster, player.getRow(), player.getCol() - 1);
 			// Monster random movements
-			moveMonster(gameMap, monster);
+			moveMonster(gameMap, monster, player);
 		}
 		else if(ch == KEY_RIGHT || ch == 'd' || ch =='D') {
-			gameMap->add(player, player.getRow(), player.getCol() + 1);
+			gameMap->add(player, monster, player.getRow(), player.getCol() + 1);
 			// Monster movements
-        		moveMonster(gameMap, monster);
+        		moveMonster(gameMap, monster, player);
 		}
 		else if(ch == KEY_UP || ch == 'w' || ch =='W') {
-			gameMap->add(player, player.getRow() - 1, player.getCol());
+			gameMap->add(player, monster, player.getRow() - 1, player.getCol());
 			// Monster movements
-        		moveMonster(gameMap, monster);     
+        		moveMonster(gameMap, monster, player);     
 		}
 		else if(ch == KEY_DOWN || ch == 's' || ch =='S') {
-			gameMap->add(player, player.getRow() + 1, player.getCol());
+			gameMap->add(player, monster, player.getRow() + 1, player.getCol());
 			// Monster movements
-        		moveMonster(gameMap, monster);            
+        		moveMonster(gameMap, monster, player);            
 		}
 		else if(ch == 'q' || ch == 'Q') {
 			break;

@@ -31,9 +31,9 @@ public:
 	// visible character for showing the trace of a game character	
 	void erase(Character &x);
 	// Add a character at a specific position to the window
-	void add(Character &x, int _row, int _col);
+	void add(Character &x, Character &y, int _row, int _col);
 	// Check if the target position is free
-	bool targetPosition(Character &x, int _row, int _col);
+	bool targetPosition(Character &x, Character &y, int _row, int _col);
 	// Print the map
 	void printMap(std::vector<std::string> &v);
 	// Print inventory
