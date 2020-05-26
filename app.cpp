@@ -1,5 +1,5 @@
 #include <ncurses.h>
-
+#include "gameloop.h"
 #include "Screen.h"
 #include "Frame.h"
 #include "Character.h"
@@ -7,7 +7,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h> 
 
-void gameLoop(Character &player, Character &monster1, Character &monster2, int ch) {
+/*void gameLoop(Character &player, Character &monster1, Character &monster2, int ch) {
 	// Check if the user wishes to play the game
 	if(ch == 'q' || ch =='Q') return;
 
@@ -149,7 +149,7 @@ void gameLoop(Character &player, Character &monster1, Character &monster2, int c
 	}
 
 		
-}
+}*/
 
 // Entry function for game
 int main() {
@@ -163,17 +163,14 @@ int main() {
 	// Wait until the user press a key
 	int ch = getch();
 
-
 	// Initialize the main character
 	Character player('P', 1, 1, 10, 10);
 
-	// Initialize a monsters
-	Character monster1('M', 1, 48, 20, 20);
-	Character monster2('M', 18, 1, 20, 20);
-
+	// Initialize a monster
+	Character monster('M', 1, 48, 20, 20);
 
 	// Start the game loop
-	gameLoop(player, monster1, monster2, ch);
+	gameLoop(player, monster, ch);
 
 	return 0;
 }

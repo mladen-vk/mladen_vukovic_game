@@ -3,7 +3,8 @@
 #include <string>
 
 // Initialize a main window (no parent)
-Frame::Frame(int nr_rows, int nr_cols, int _row, int _col, Frame *_subFrame) : m_height(nr_rows), m_width(nr_cols), m_row(_row), m_col(_col), m_subFrame(_subFrame) {
+Frame::Frame(int nr_rows, int nr_cols, int _row, int _col, Frame *_subFrame) : m_height(nr_rows), 
+					m_width(nr_cols), m_row(_row), m_col(_col), m_subFrame(_subFrame) {
 	m_win = newwin(nr_rows, nr_cols, _row, _col);
 	box(m_win, '#', '#');
 	wrefresh(m_win);
@@ -38,7 +39,9 @@ bool Frame::targetPosition(Character &x, int _row, int _col) {
 	if (target == 'M' || target == 'P') {
 		x.setArmor(-5);
 		x.setHealth(-5);
-		m_subFrame -> printInventory(x);
+		// Print only stats for the player
+		if(x.getSymbol() == 'P')
+			m_subFrame -> printInventory(x);
 		if(x.getArmor() + x.getHealth() <= 0)
 			if(x.getSymbol() == 'P'){
 				std::vector<std::string> v{{"                                               "},
@@ -66,14 +69,18 @@ bool Frame::targetPosition(Character &x, int _row, int _col) {
 	// If the target position is an armor plate add five points to the armor
 	if (target == 'a') {
 		x.setArmor(5);
-		m_subFrame -> printInventory(x);
+		// Print only stats for the player
+		if(x.getSymbol() == 'P')
+			m_subFrame -> printInventory(x);
 		return TRUE;
 	}
 
 	// If the target position is a health add five points to the healt
 	if (target == 'h') {
 		x.setHealth(5);
-		m_subFrame -> printInventory(x);
+		// Print only stats for the player
+		if(x.getSymbol() == 'P')
+			m_subFrame -> printInventory(x);
 		return TRUE;
 	}
 	return TRUE;
