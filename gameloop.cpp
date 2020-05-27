@@ -48,19 +48,16 @@ void gameLoop(Character &player, Character &monster, int ch) {
 
 	//Create four independent ncurses windows
         std::shared_ptr<Frame> inventory = std::make_shared<Frame>(7, 29, 0, 51);
-	//Frame inventory(7, 29, 0, 51);
 	inventory->printInventory(player);
 
 	std::shared_ptr<Frame> gameMap = std::make_shared<Frame>(20, 50, 0, 0, inventory.get());
-	//Frame gameMap(20, 50, 0, 0, &inventory);
 	gameMap->printMap(v);
 
 	std::shared_ptr<Frame> legend = std::make_shared<Frame>(13, 29, 7, 51);
-	//Frame legend(13, 29, 7, 51);
 	legend->printLegend();
 
 	std::shared_ptr<Frame> interface = std::make_shared<Frame>(4, 80, 20, 0);
-	//Frame interface(4, 80, 20, 0);
+
 
 	// Show the main character on the screen
 	gameMap->add(player);
