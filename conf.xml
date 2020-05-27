@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<Dimensions>
+		<Rows>20</Rows>
+		<Columns>50</Columns>
+	</Dimensions>
+	<Map>
+	"   TTTTTTT~~~~~              ####              "
+	"      TTTT  ~~~~    TTTTT     ######           "
+	"         TTT                                   "
+	"                            h    a    h        "
+	"                                               "
+	"       a             ~~                        "
+	"                  ~~~~~~~                      "
+	"         a    a       ~~~~~~~~~  a   ######    "
+	"                  ~~~~~~~~                     "
+	"               h       h                       "
+	"                                               "
+	"     a   TTT                      a      h  h  "
+	"   TTTTTTT       a                             "
+	"      TTTT              ######      a          "
+	"               h                        a      "
+	"                                               "
+	"                  #######                      "
+	"            ####################               "
+	</Map>
+	<Characters>
+		<Player>
+			<Placement>
+				<Row>9</Row>
+				<Col>40</Col>
+			</Placement>
+			<Armor>10</Armor>
+			<Health>10</Health>
+		</Player>
+		<Monster>
+			<Placement>
+				<Row>9</Row>
+				<Col>40</Col>
+			</Placement>
+			<Armor>10</Armor>
+			<Health>10</Health>
+		</Monster>
+	<Characters>
+		
