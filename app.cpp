@@ -1,12 +1,8 @@
 #include "gameloop.h"
 #include "Screen.h"
-#include "Frame.h"
 #include "Character.h"
 #include <ncurses.h>
 #include <memory>
-#include <cmath>
-#include <stdlib.h>     
-#include <time.h> 
 
 // Entry function for the game
 int main() {
