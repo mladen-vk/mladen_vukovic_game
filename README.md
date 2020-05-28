@@ -1,4 +1,4 @@
-# playrix_assignmet_mladen_vukovic
+# mladen_vukovic_game
 Roguelike game.
 
 Game was built on Ubuntu 18.04 (g++ and ncurses lib are needed). 
